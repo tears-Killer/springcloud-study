@@ -1,0 +1,15 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: stock-service
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: dev
+        ephemeral: true #false为永久实例 挂掉后不会被nacos删除
+        cluster-name: WH

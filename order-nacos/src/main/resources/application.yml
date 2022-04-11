@@ -1,0 +1,33 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: dev
+        cluster-name: WH
+
+orderservice:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+ribbon:
+  eager-load:
+    enabled: true #饥饿加载 开启
+    clients:
+      -orderservice
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: BASIC
+  httpclient:
+    max-connections: 200 #最大连接数
+    max-connections-per-route: 50
+    connection-timeout: 2000
